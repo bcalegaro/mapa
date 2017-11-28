@@ -1,3 +1,4 @@
+import { SharedModule } from './_shared/shared.module';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -36,7 +37,8 @@ import { UpgradeComponent } from "./upgrade/upgrade.component";
     HttpModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
