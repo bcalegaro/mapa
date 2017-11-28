@@ -8,14 +8,15 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: 'dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: 'user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: 'table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: 'typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: 'icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: 'maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: 'notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: 'upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: 'db-master', title: 'DB',  icon: 'fa fa-home', class: '' },
+    { path: 'dashboard', title: 'Dashboard',  icon: 'fa-dashboard', class: '' },
+    { path: 'user-profile', title: 'User Profile',  icon:'fa fa-user', class: '' },
+    { path: 'table-list', title: 'Table List',  icon:'fa fa-clipboard', class: '' },
+    { path: 'typography', title: 'Typography',  icon:'fa fa-book', class: '' },
+    { path: 'icons', title: 'Icons',  icon:'fa fa-comment', class: '' },
+    { path: 'maps', title: 'Maps',  icon:'fa fa-map-marker', class: '' },
+    { path: 'notifications', title: 'Notifications',  icon:'fa fa-bell', class: '' },
+    { path: 'upgrade', title: 'Upgrade to PRO',  icon:'fa fa-upload', class: 'active-pro' },
 ];
 
 @Component({

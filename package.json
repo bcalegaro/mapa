@@ -5,13 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build":
-      "ng build --prod && cp ./src/electron/entry.js ./dist/ && cp ./src/electron/package.json ./dist/",
+    "build": "ng build --prod && cp ./src/electron/entry.js ./dist/ && cp ./src/electron/package.json ./dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron:live":
-      "concurrently \"electron ./src/electron/entry.live.js\" \"yarn start\"",
+    "electron:live": "concurrently \"electron ./src/electron/entry.live.js\" \"yarn start\"",
     "electron": "electron dist",
     "dist": "build --win"
   },
@@ -40,6 +38,7 @@
     "jquery": "3.2.1",
     "material-design-icons": "^3.0.1",
     "moment": "^2.19.2",
+    "nedb": "^1.8.0",
     "perfect-scrollbar": "^1.2.0",
     "roboto-fontface": "^0.8.0",
     "rxjs": "^5.5.2",
@@ -76,11 +75,10 @@
       "target": "nsis",
       "icon": "build/icon.ico"
     },
-    "nsis" : {
-      "oneClick" : false,
-      "allowToChangeInstallationDirectory" : true
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     },
-
     "directories": {
       "output": "release",
       "app": "dist",
