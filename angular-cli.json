@@ -23,6 +23,7 @@
         "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
         "./assets/sass/material-dashboard.scss",
         "./assets/css/demo.css",
+        "../node_modules/animate.css/animate.min.css",
         "styles.scss"
       ],
       "scripts": [
