@@ -21,4 +21,8 @@ export class DbHomeComponent implements OnInit {
     this.dbservice.showTodos();
   }
 
+  addAlma() {
+    this.dbservice.addAlma();
+  }
+
 }

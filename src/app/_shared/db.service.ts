@@ -61,4 +61,58 @@ export class DBService {
       });
     });
   }
+
+  addAlma() {
+    const number1: DocInfo = {
+      number: 1,
+      description: "teste de texto"
+    };
+    const docsInfo: DocInfo[] = new Array<DocInfo>();
+    docsInfo.push(number1);
+    const almaNumbers: DocHeader = {
+      _id: "Alma",
+      docs: docsInfo
+    };
+
+    this.updateAlma(almaNumbers);
+  }
+
+  updateAlma(newDoc: DocHeader) {
+    this.db
+      .get("Alma")
+      .catch(err => {
+        if (err.name === "not_found") {
+          return {
+            _id: "Alma",
+            docs: new Array<DocInfo>()
+          };
+        } else {
+          // hm, some other error
+          throw err;
+        }
+      })
+      .then((origDoc: DocHeader) => {
+        newDoc._rev = origDoc._rev;
+        newDoc.docs[0].description = "alterei" + new Date();
+        this.db.put(newDoc, function callback(err, result) {
+          if (!err) {
+            console.log("Successfully inserted alma!");
+          } else {
+            console.log("Unsuccessfully inserted alma, got error: " + err);
+          }
+        });
+      });
+  }
+}
+
+// Custom interfaces to manage database doc structure
+interface DocHeader {
+  _id: string;
+  _rev?: string;
+  docs: DocInfo[];
+}
+
+interface DocInfo {
+  number: number;
+  description: string;
 }
