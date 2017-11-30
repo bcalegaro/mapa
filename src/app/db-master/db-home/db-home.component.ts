@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DBService } from 'app/_shared/db.service';
 
@@ -8,7 +9,7 @@ import { DBService } from 'app/_shared/db.service';
 })
 export class DbHomeComponent implements OnInit {
 
-  constructor(public dbservice:  DBService) { }
+  constructor(public dbservice:  DBService, public router: Router) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,11 @@ export class DbHomeComponent implements OnInit {
 
   addAlma() {
     this.dbservice.addAlma();
+  }
+
+  goToNumberDoc(doc: string) {
+    console.log('go')
+    this.router.navigate(['/db-master/db-numbers-docs', doc]);
   }
 
 }

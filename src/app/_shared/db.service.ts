@@ -96,9 +96,9 @@ export class DBService {
         newDoc.docs[0].description = "alterei" + new Date();
         this.db.put(newDoc, function callback(err, result) {
           if (!err) {
-            console.log("Successfully inserted alma!");
+            console.log("Successfully updated alma!");
           } else {
-            console.log("Unsuccessfully inserted alma, got error: " + err);
+            console.log("Unsuccessfully updated alma, got error: " + err);
           }
         });
       });
