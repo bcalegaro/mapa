@@ -15,16 +15,76 @@ import { UpgradeComponent } from "./upgrade/upgrade.component";
 const routes: Routes = [
   {
     path: "db-master",
+    data: {
+      labels: ["Arquivos"],
+      urls: ["db-master"]
+    },
     loadChildren: "./db-master/db-master.module#DbMasterModule"
   },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "user-profile", component: UserProfileComponent },
-  { path: "table-list", component: TableListComponent },
-  { path: "typography", component: TypographyComponent },
-  { path: "icons", component: IconsComponent },
-  { path: "maps", component: MapsComponent },
-  { path: "notifications", component: NotificationsComponent },
-  { path: "upgrade", component: UpgradeComponent },
+  {
+    path: "dashboard",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: DashboardComponent
+  },
+  {
+    path: "user-profile",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: UserProfileComponent
+  },
+  {
+    path: "table-list",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: TableListComponent
+  },
+  {
+    path: "typography",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: TypographyComponent
+  },
+  {
+    path: "icons",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: IconsComponent
+  },
+  {
+    path: "maps",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: MapsComponent
+  },
+  {
+    path: "notifications",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: NotificationsComponent
+  },
+  {
+    path: "upgrade",
+    data: {
+      labels: ["Dashboard"],
+      urls: ["dashboard"]
+    },
+    component: UpgradeComponent
+  },
   { path: "", redirectTo: "db-master", pathMatch: "full" }
 ];
 

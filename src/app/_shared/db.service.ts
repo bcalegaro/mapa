@@ -62,6 +62,45 @@ export class DBService {
     });
   }
 
+  updateDoc(id: string, info: Array<DocInfo>) {
+    // Define target doc to update
+    const doc: DocHeader = {
+      _id: id,
+      docs: info
+    };
+    // Connect to the database do update or create the given document
+    this.db
+      .get(id)
+      .catch(err => {
+        if (err.name === "not_found") {
+          return {
+            _id: id,
+            docs: new Array<DocInfo>()
+          };
+        } else {
+          // hm, some other error
+          throw err;
+        }
+      })
+      .then((origDoc: DocHeader) => {
+        doc._rev = origDoc._rev;
+        doc.docs = info;
+        this.db.put(doc, function callback(err, result) {
+          if (!err) {
+            console.log("Successfully updated " + id + "!");
+          } else {
+            console.log("Unsuccessfully updated " + id + ", got error: " + err);
+          }
+        });
+      });
+  }
+
+  getDoc(id: string) {
+    return this.db.get(id).then((doc: DocHeader) => {
+      return doc;
+    });
+  }
+
   addAlma() {
     const number1: DocInfo = {
       number: 1,
@@ -106,13 +145,13 @@ export class DBService {
 }
 
 // Custom interfaces to manage database doc structure
-interface DocHeader {
+export interface DocHeader {
   _id: string;
   _rev?: string;
   docs: DocInfo[];
 }
 
-interface DocInfo {
+export interface DocInfo {
   number: number;
   description: string;
 }
