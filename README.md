@@ -33,6 +33,18 @@ Run `yarn dist` to release a distribution installer for Windows. Be sure to have
 
 * Note: If you are using Linux, Wine 1.8+ is required.
 
+## Tips
+
+Tips for rapid development:
++ *ngFor="let item of list"
+
+### Distribution Installer
+
+Run `yarn dist` to release a distribution installer for Windows. Be sure to have runned `yarn build` before.
+
+
+
+
 ## References
 
 * [Material Dashboard Angular - Free Bootstrap Material Design Admin](https://www.creative-tim.com/product/material-dashboard-angular2)

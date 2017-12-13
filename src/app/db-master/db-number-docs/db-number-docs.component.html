@@ -13,5 +13,22 @@
         </div>
       </div>
     </div>
+    <div *ngIf="doc" class="row">
+      <div class="col-12">
+        <div *ngFor="let number of doc.docs" class="card">
+          <div class="card-header" data-background-color="orange">
+            <h4 class="title">Número {{number.number}}</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              {{number.description}}
+            </p>
+            <div class="card-footer">
+              <button class="btn pull-right" data-background-color="orange">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

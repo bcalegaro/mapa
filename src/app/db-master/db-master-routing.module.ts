@@ -5,19 +5,24 @@ import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'db-home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "db-home",
+    pathMatch: "full"
   },
   {
-    path: 'db-home',
-    component: DbHomeComponent
+    path: "db-home",
+    component: DbHomeComponent,
+    data: {
+      labels: ["Arquivos"],
+      urls: ["db-master/db-home"]
+    }
   },
   {
     path: "db-numbers-docs/:id",
     component: DbNumberDocsComponent,
     data: {
-      title: "DB Number Docs"
+      labels: ["Arquivos", "Visualizar Número"],
+      urls: ["db-master/db-home", "db-master/db-numbers-docs"]
     }
   }
 ];

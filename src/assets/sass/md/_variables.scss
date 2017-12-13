@@ -51,7 +51,7 @@ $font-weight-bold:    500 !default;
 $font-weight-extra-bold: 700 !default;
 $font-weight-ultra-bold: 900 !default;
 
-$body-bg: #EEEEEE !default;
+$body-bg: $grey-50 !default;
 //---
 
 // import bs variables for sass, first declared wins.
@@ -87,7 +87,7 @@ $black-input-color:     #555555 !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               $white !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 

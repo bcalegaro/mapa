@@ -26,9 +26,15 @@ export class DbHomeComponent implements OnInit {
     this.dbservice.addAlma();
   }
 
-  goToNumberDoc(doc: string) {
-    console.log('go')
-    this.router.navigate(['/db-master/db-numbers-docs', doc]);
+  addAparencia() {
+    this.dbservice.updateDoc("Aparencia", []);
   }
 
+  addDestino() {
+    this.dbservice.updateDoc("Destino", []);
+  }
+
+  goToNumberDoc(doc: string) {
+    this.router.navigate(['/db-master/db-numbers-docs', doc]);
+  }
 }
