@@ -1,21 +1,19 @@
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { DBService } from 'app/_shared/db.service';
+import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { DBService } from "@shared/db.service";
 
 @Component({
-  selector: 'app-db-home',
-  templateUrl: './db-home.component.html',
-  styleUrls: ['./db-home.component.scss']
+  selector: "app-db-home",
+  templateUrl: "./db-home.component.html",
+  styleUrls: ["./db-home.component.scss"]
 })
 export class DbHomeComponent implements OnInit {
+  constructor(public dbservice: DBService, public router: Router) {}
 
-  constructor(public dbservice:  DBService, public router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addTodo() {
-    this.dbservice.addTodo('t');
+    this.dbservice.addTodo("t");
   }
 
   showTodos() {
@@ -35,6 +33,17 @@ export class DbHomeComponent implements OnInit {
   }
 
   goToNumberDoc(doc: string) {
-    this.router.navigate(['/db-master/db-numbers-docs', doc]);
+    this.router.navigate(["/db-master/db-numbers-docs", doc]);
+  }
+
+  action(event) {
+    switch (event) {
+      case "Alma":
+        this.goToNumberDoc("Alma");
+        break;
+      default:
+        console.log(event);
+        break;
+    }
   }
 }

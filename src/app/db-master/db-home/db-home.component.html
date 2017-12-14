@@ -15,25 +15,15 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <div class="card">
-          <div class="card-header" data-background-color="orange">
-            <h4 class="title">Número da Alma</h4>
-          </div>
-          <div class="card-content">
-            <p>
-              O número da alma significa...
-            </p>
-            <div class="card-footer">
-              <button class="btn pull-right" data-background-color="orange" (click)="goToNumberDoc('Alma')">Visualizar</button>
-            </div>
-          </div>
-        </div>
+        <app-card-awesome
+        [title]="'Número da Alma'"
+        [description]="' O número da alma significa...'"
+        [color]="'orange'"
+        [btnText]="Visualizar"
+        [btnAction]="'Alma'"
+        (change)="action($event)"
+        ></app-card-awesome>
       </div>
     </div>
-    
-    <!--
-      <button class="btn btn-primary" (click)="addTodo()">ADD</button>
-      <button class="btn btn-primary" (click)="showTodos()">SHOW</button>
--->
   </div>
 </div>

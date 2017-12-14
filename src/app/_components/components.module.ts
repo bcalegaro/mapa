@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { CardAwesomeComponent } from './card-awesome/card-awesome.component';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    CardAwesomeComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    CardAwesomeComponent
   ]
 })
 export class ComponentsModule { }

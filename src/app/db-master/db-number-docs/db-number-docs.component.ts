@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import { DBService, DocHeader } from 'app/_shared/db.service';
 
+import { DBService, DocHeader } from '@shared/db.service';
 
 @Component({
   selector: 'app-db-number-docs',

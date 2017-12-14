@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -c",
+    "start": "ng serve",
     "build": "ng build --prod && cp ./src/electron/entry.js ./dist/ && cp ./src/electron/package.json ./dist/",
     "test": "ng test",
     "lint": "ng lint",

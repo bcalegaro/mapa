@@ -6,8 +6,11 @@ import {
   PopStateEvent
 } from "@angular/common";
 import "rxjs/add/operator/filter";
-import { NavbarComponent } from "./components/navbar/navbar.component";
+
+import { NavbarComponent } from "@components/navbar/navbar.component";
+
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
+
 import { Subscription } from "rxjs/Subscription";
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -80,6 +83,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       return true;
     }
   }
+
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
       const elemMainPanel = <HTMLElement>document.querySelector(".main-panel");
@@ -87,6 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       ps.update();
     }
   }
+
   isMac(): boolean {
     let bool = false;
     if (
