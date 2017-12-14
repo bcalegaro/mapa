@@ -19,10 +19,15 @@
         [title]="'Número da Alma'"
         [description]="' O número da alma significa...'"
         [color]="'orange'"
-        [btnText]="Visualizar"
+        [btnText]="'Visualizar'"
         [btnAction]="'Alma'"
         (change)="action($event)"
         ></app-card-awesome>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-12">
+        <button class="btn btn-primary"  (click)="addAlma()">Adicionar Alma</button>
       </div>
     </div>
   </div>

@@ -21,15 +21,7 @@ export class DbHomeComponent implements OnInit {
   }
 
   addAlma() {
-    this.dbservice.addAlma();
-  }
-
-  addAparencia() {
-    this.dbservice.updateDoc("Aparencia", []);
-  }
-
-  addDestino() {
-    this.dbservice.updateDoc("Destino", []);
+    this.dbservice.initDocument('Alma');
   }
 
   goToNumberDoc(doc: string) {

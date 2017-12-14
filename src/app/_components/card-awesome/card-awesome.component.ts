@@ -9,7 +9,7 @@ export class CardAwesomeComponent implements OnInit {
   @Input() title;
   @Input() description;
   @Input() color;
-
+modal = '#myModal';
   @Input() btnText;
   @Input() btnAction;
   @Output() change = new EventEmitter();
@@ -19,7 +19,7 @@ export class CardAwesomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  dodo() {
+  sendAction() {
     this.change.emit(this.btnAction);
   }
 

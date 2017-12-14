@@ -2,21 +2,23 @@ import { Injectable } from "@angular/core";
 
 import PouchDB from "pouchdb-browser";
 
+// Number mapa custom type [original, textual, value]
+import { NumberMapa } from './number.service';
+
 @Injectable()
 export class DBService {
   db: any;
 
   constructor() {
     console.log("DB Service created...");
-    this.connect();
+    this.connect('projetomapa');
   }
 
-  connect() {
-    this.db = new PouchDB("todos");
-    const remote =
-      "https://8662919f-e8d0-4227-8526-8c1a0f31b237-bluemix:5f43b9ac08a73bee3831fd0074364110038af114d8ee479d2953b4119de45a83@8662919f-e8d0-4227-8526-8c1a0f31b237-bluemix.cloudant.com/todos";
+  connect(document: string) {
+    this.db = new PouchDB(document);
+    const remote = "https://8662919f-e8d0-4227-8526-8c1a0f31b237-bluemix:5f43b9ac08a73bee3831fd0074364110038af114d8ee479d2953b4119de45a83@8662919f-e8d0-4227-8526-8c1a0f31b237-bluemix.cloudant.com/" + document;
     const remoteDB = new PouchDB(remote);
-    this.db
+    return this.db
       .sync(remoteDB, {
         live: true,
         retry: true
@@ -101,46 +103,37 @@ export class DBService {
     });
   }
 
-  addAlma() {
-    const number1: DocInfo = {
-      number: 1,
-      description: "teste de texto"
-    };
+  // Function to init a blank document
+  initDocument(name: string) {
+    // Create an sample document with only one file
     const docsInfo: DocInfo[] = new Array<DocInfo>();
+    const number1: DocInfo = {
+      number: {
+        original: 1,
+        textual: "1",
+        value: 1,
+        color: 'red'
+      },
+      description: "Texto em branco. Vocẽ precisa alterar."
+    };
     docsInfo.push(number1);
-    const almaNumbers: DocHeader = {
-      _id: "Alma",
+    const number2: DocInfo = {
+      number: {
+        original: 2,
+        textual: "2",
+        value: 2,
+        color: 'orange'
+      },
+      description: "Texto em branco. Vocẽ precisa alterar."
+    };
+    docsInfo.push(number2);
+    // Assembly informations in one object
+    const initalDocument: DocHeader = {
+      _id: name,
       docs: docsInfo
     };
-
-    this.updateAlma(almaNumbers);
-  }
-
-  updateAlma(newDoc: DocHeader) {
-    this.db
-      .get("Alma")
-      .catch(err => {
-        if (err.name === "not_found") {
-          return {
-            _id: "Alma",
-            docs: new Array<DocInfo>()
-          };
-        } else {
-          // hm, some other error
-          throw err;
-        }
-      })
-      .then((origDoc: DocHeader) => {
-        newDoc._rev = origDoc._rev;
-        newDoc.docs[0].description = "alterei" + new Date();
-        this.db.put(newDoc, function callback(err, result) {
-          if (!err) {
-            console.log("Successfully updated alma!");
-          } else {
-            console.log("Unsuccessfully updated alma, got error: " + err);
-          }
-        });
-      });
+    // Send initial document to database
+    this.updateDoc(initalDocument._id, initalDocument.docs);
   }
 }
 
@@ -152,6 +145,6 @@ export interface DocHeader {
 }
 
 export interface DocInfo {
-  number: number;
+  number: NumberMapa;
   description: string;
 }

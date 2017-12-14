@@ -1,6 +1,9 @@
-import { DBService } from './db.service';
 import { ModuleWithComponentFactories, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { NumberService } from './number.service';
+import { DBService } from './db.service';
+
 
 @NgModule({
   imports: [
@@ -12,7 +15,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [DBService]
+      providers: [DBService, NumberService]
     }
   }
  }
