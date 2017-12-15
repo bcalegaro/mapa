@@ -15,19 +15,27 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <app-card-awesome
-        [title]="'Número da Alma'"
-        [description]="' O número da alma significa...'"
-        [color]="'orange'"
-        [btnText]="'Visualizar'"
-        [btnAction]="'Alma'"
-        (change)="action($event)"
-        ></app-card-awesome>
+        <app-card-awesome [title]="'Número da Alma'" [description]="' O número da Alma significa...'" [color]="'orange'" [btnText]="'Visualizar'"
+          [btnAction]="'Alma'" (change)="action($event)"></app-card-awesome>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <app-card-awesome [title]="'Número da Aparência'" [description]="' O número da Aparência significa...'" [color]="'blue'" [btnText]="'Visualizar'"
+          [btnAction]="'Aparência'" (change)="action($event)"></app-card-awesome>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <app-card-awesome [title]="'Número do Destino'" [description]="'O número do Destino significa...'" [color]="'green'" [btnText]="'Visualizar'"
+          [btnAction]="'Destino'" (change)="action($event)"></app-card-awesome>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-12">
-        <button class="btn btn-primary"  (click)="addAlma()">Adicionar Alma</button>
+        <button class="btn btn-primary" (click)="addDocument('Alma')">Adicionar Alma</button>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <button class="btn btn-primary" (click)="addDocument('Aparência')">Adicionar Aparencia</button>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <button class="btn btn-primary" (click)="addDocument('Destino')">Adicionar Destino</button>
       </div>
     </div>
   </div>

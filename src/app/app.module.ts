@@ -21,6 +21,9 @@ import { MapsComponent } from "./maps/maps.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { UpgradeComponent } from "./upgrade/upgrade.component";
 
+// FROALA - Import Angular plugin.
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,8 @@ import { UpgradeComponent } from "./upgrade/upgrade.component";
     UpgradeComponent
   ],
   imports: [
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,

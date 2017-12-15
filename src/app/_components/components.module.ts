@@ -7,11 +7,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CardAwesomeComponent } from './card-awesome/card-awesome.component';
+import { FroalaViewModule } from 'angular-froala-wysiwyg/view/view.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FroalaViewModule
   ],
   declarations: [
     FooterComponent,

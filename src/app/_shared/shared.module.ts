@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NumberService } from './number.service';
 import { DBService } from './db.service';
 
-
 @NgModule({
   imports: [
     CommonModule

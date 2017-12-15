@@ -20,8 +20,8 @@ export class DbHomeComponent implements OnInit {
     this.dbservice.showTodos();
   }
 
-  addAlma() {
-    this.dbservice.initDocument('Alma');
+  addDocument(name: string) {
+    this.dbservice.initDocument(name);
   }
 
   goToNumberDoc(doc: string) {
@@ -31,9 +31,15 @@ export class DbHomeComponent implements OnInit {
   action(event) {
     switch (event) {
       case "Alma":
-        this.goToNumberDoc("Alma");
-        break;
-      default:
+      this.goToNumberDoc("Alma");
+      break;
+      case "Aparência":
+      this.goToNumberDoc("Aparência");
+      break;
+      case "Destino":
+      this.goToNumberDoc("Destino");
+      break;
+default:
         console.log(event);
         break;
     }
