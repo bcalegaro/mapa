@@ -216,13 +216,38 @@
     }
 
     [data-background-color="orange"]{
-        background: linear-gradient(60deg, $orange-400, $orange-600);
+        background: linear-gradient(60deg, $orange-600, $orange-800);
         @include shadow-big-color($brand-warning);
     }
 
     [data-background-color="red"]{
         background: linear-gradient(60deg, $red-400, $red-600);
         @include shadow-big-color($brand-danger);
+    }
+
+    [data-background-color="yellow"]{
+        background: linear-gradient(60deg, $yellow-600, $yellow-800);
+        @include shadow-big-color($brand-yellow);
+    }
+
+    [data-background-color="blue-400"]{
+        background: linear-gradient(60deg, $blue-400, $blue-600);
+        @include shadow-big-color($brand-blue);
+    }
+
+    [data-background-color="indigo-600"]{
+        background: linear-gradient(60deg, $indigo-600, $indigo-800);
+        @include shadow-big-color($brand-indigo);
+    }
+
+    [data-background-color="pink"]{
+        background: linear-gradient(60deg, $pink-200, $pink-400);
+        @include shadow-big-color($brand-pink);
+    }
+
+    [data-background-color="gold"]{
+        background: linear-gradient(60deg, $amber-400, $amber-600);
+        @include shadow-big-color($brand-gold);
     }
 
     [data-background-color]{
