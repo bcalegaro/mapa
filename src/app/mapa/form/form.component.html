@@ -1,64 +1,95 @@
 <div class="main-content animated fadeIn">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <div class="title">
-          <h1>
-            Formulário de Dados
-          </h1>
-          <p>
-            Use este módulo para inserir os dados para calcular a numerologia.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <a class="btn btn-info btn-block" href="#" role="button">Aprenda mais</a>
-      </div>
-    </div>
-    <div class="row">
+      <!-- PAGE LEFT LAYOUT -->
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header" data-background-color="red">
-            <h4 class="title">Formulário</h4>
-            <p class="category">Insira as informações</p>
-          </div>
-          <div class="card-content">
-            <form [formGroup]="mapaForm">
-              <div class="row">
-                <div class="col-md-11">
-                  <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['fullName'].valid, 'has-error': mapaForm.controls['fullName'].touched&&mapaForm.controls['fullName'].invalid}">
-                    <label for="fullName" class="control-label">Nome Completo</label>
-                    <input type="text" id="fullName" [formControl]="mapaForm.controls['fullName']" class="form-control" pattern="[a-zA-Z ]*">
-                    <span class="form-control-feedback">
-                      <i *ngIf="mapaForm.controls['fullName'].valid" class="material-icons">done</i>
-                      <i *ngIf="mapaForm.controls['fullName'].invalid" class="material-icons">clear</i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['email'].valid, 'has-error': mapaForm.controls['email'].dirty&&mapaForm.controls['email'].invalid}">
-                    <label for="email" class="control-label">Email (Opcional)</label>
-                    <input type="email" id="email" [formControl]="mapaForm.controls['email']" class="form-control">
-                    <span class="form-control-feedback">
-                      <i *ngIf="mapaForm.controls['email'].valid" class="material-icons">done</i>
-                      <i *ngIf="mapaForm.controls['email'].invalid" class="material-icons">clear</i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-success pull-right" (click)="test2()">Pronto</button>
-              <div class="clearfix"></div>
-            </form>
+        <!-- PAGE HEADER WITH FREE RIGHT SPACE-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+              <h1>
+                Formulário de Dados
+              </h1>
+              <p>
+                Use este módulo para inserir os dados para calcular a numerologia.
+              </p>
+            </div>
           </div>
         </div>
+        <!-- PAGE HEADER WITH FREE RIGHT SPACE-->
+        <!-- INFO BUTTON-->
+        <div class="row">
+          <div class="col-md-3">
+            <a class="btn btn-info btn-block" href="#" role="button">Aprenda mais</a>
+          </div>
+        </div>
+        <!-- INFO BUTTON-->
+        <!-- FORM -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" data-background-color="red">
+                <h4 class="title">Formulário</h4>
+                <p class="category">Insira as informações</p>
+              </div>
+              <div class="card-content">
+                <form [formGroup]="mapaForm">
+                  <!-- FULL NAME INPUT -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['fullName'].valid, 'has-error': mapaForm.controls['fullName'].touched&&mapaForm.controls['fullName'].invalid}">
+                        <label for="fullName" class="control-label">Nome Completo</label>
+                        <input type="text" id="fullName" [formControl]="mapaForm.controls['fullName']" class="form-control" pattern="[a-zA-Z ]*">
+                        <span class="form-control-feedback">
+                          <i *ngIf="mapaForm.controls['fullName'].valid" class="material-icons">done</i>
+                          <i *ngIf="mapaForm.controls['fullName'].invalid" class="material-icons">clear</i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- FULL NAME INPUT -->
+                  <div class="row">
+                    <!-- BIRTHDAY INPUT - MASK CONFIGURED TO DD/MM/YYYY -->
+                    <div class="col-md-6">
+                      <div class="form-group label-floating is-empty">
+                        <label for="birthday" class="control-label">Data de Nascimento</label>
+                        <input id="birthday" [formControl]="mapaForm.controls['birthday']" 
+                        class="form-control"
+                        mask="00/00/0000">
+                        <span class="form-control-feedback">asdsd
+                          <i *ngIf="!mapaForm.controls['birthday'].valid||true" class="material-icons">done</i>
+                          <i *ngIf="mapaForm.controls['birthday'].invalid||true" class="material-icons">clear</i>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- BIRTHDAY INPUT -->
+                    <!-- EMAIL INPUT -->
+                    <div class="col-md-6">
+                      <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['email'].valid, 'has-error': (mapaForm.controls['email'].touched||mapaForm.controls['email'].dirty)&&mapaForm.controls['email'].invalid}">
+                        <label for="email" class="control-label">Email (Opcional)</label>
+                        <input id="email" [formControl]="mapaForm.controls['email']" class="form-control">
+                        <span class="form-control-feedback">
+                          <i *ngIf="mapaForm.controls['email'].valid" class="material-icons">done</i>
+                          <i *ngIf="mapaForm.controls['email'].invalid" class="material-icons">clear</i>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- EMAIL INPUT -->
+                  </div>
+
+                  <button type="submit" class="btn pull-right" [ngClass]="{'btn-success': mapaForm.valid}" (click)="validateDate()">Pronto</button>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- FORM -->
       </div>
-      <div class="col-md-4">
+      <!-- PAGE LEFT LAYOUT -->
+      <!-- PAGE RIGHT LAYOUT -->
+      <div *ngIf="showPreResume" class="col-md-4">
         <div class="card">
           <div class="card-header" data-background-color="blue">
             <h4 class="title">Formulário</h4>
@@ -77,6 +108,7 @@
           </div>
         </div>
       </div>
+      <!-- PAGE RIGHT LAYOUT -->
     </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
 
-import { FormService } from './../_services/form.service';
+// Business logic
+import { FormService } from "./../_services/form.service";
+// Angular forms
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-form",
@@ -10,8 +12,11 @@ import { FormService } from './../_services/form.service';
   styleUrls: ["./form.component.scss"]
 })
 export class FormComponent implements OnInit {
+  // Mapa form group
   mapaForm: FormGroup;
-test = true;
+  // Flag to show pre-resume
+  showPreResume: boolean;
+
   constructor(
     private router: Router,
     private formService: FormService,
@@ -19,19 +24,23 @@ test = true;
   ) {
     this.mapaForm = this.formBuilder.group({
       'fullName': ['', Validators.required],
-      'email': ['',  Validators.email]
+      'email': ['', Validators.email],
+      'birthday': ['', Validators.compose([
+        this.formService.dateValidator
+      ])]
     });
+    // Set initial flag
+    this.showPreResume = false;
 
   }
 
-  test2() {
-    this.test = !this.test;
-alert(    this.mapaForm.controls['email'].dirty)
-  }
-
-  ngOnInit() {}
+  ngOnInit() { }
 
   goToResume() {
     this.formService.goToResume();
+  }
+
+  validateDate() {
+    console.log(this.mapaForm.controls['birthday'].invalid);
   }
 }
