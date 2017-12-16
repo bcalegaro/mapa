@@ -42,6 +42,33 @@ Tips for rapid development:
 
 Run `yarn dist` to release a distribution installer for Windows. Be sure to have runned `yarn build` before.
 
+## Recommended Visual Code Extensions
+
+* [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template).
+
+* [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag).
+
+* [Auto close tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag).
+
+* [HTML5 Snippets](https://marketplace.visualstudio.com/items?itemName=abusaidm.html-snippets).
+
+* [Auto import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport).
+
+* [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense).
+
+* [TS Lint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint).
+
+* [TypeScript Hero](https://marketplace.visualstudio.com/items?itemName=rbbit.typescript-hero).
+
+* [VS Code icons](https://marketplace.visualstudio.com/items?itemName=robertohuertasm.vscode-icons).
+
+* [SCSS Intellisense](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss).
+
+* [HTML SCSS Suport](https://marketplace.visualstudio.com/items?itemName=P-de-Jong.vscode-html-scss).
+
+* [HTML CSS Suport](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css).
+
+* [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify).
 
 
 

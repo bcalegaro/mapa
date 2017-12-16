@@ -1,0 +1,82 @@
+<div class="main-content animated fadeIn">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="title">
+          <h1>
+            Formulário de Dados
+          </h1>
+          <p>
+            Use este módulo para inserir os dados para calcular a numerologia.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <a class="btn btn-info btn-block" href="#" role="button">Aprenda mais</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">Formulário</h4>
+            <p class="category">Insira as informações</p>
+          </div>
+          <div class="card-content">
+            <form [formGroup]="mapaForm">
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['fullName'].valid, 'has-error': mapaForm.controls['fullName'].touched&&mapaForm.controls['fullName'].invalid}">
+                    <label for="fullName" class="control-label">Nome Completo</label>
+                    <input type="text" id="fullName" [formControl]="mapaForm.controls['fullName']" class="form-control" pattern="[a-zA-Z ]*">
+                    <span class="form-control-feedback">
+                      <i *ngIf="mapaForm.controls['fullName'].valid" class="material-icons">done</i>
+                      <i *ngIf="mapaForm.controls['fullName'].invalid" class="material-icons">clear</i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['email'].valid, 'has-error': mapaForm.controls['email'].dirty&&mapaForm.controls['email'].invalid}">
+                    <label for="email" class="control-label">Email (Opcional)</label>
+                    <input type="email" id="email" [formControl]="mapaForm.controls['email']" class="form-control">
+                    <span class="form-control-feedback">
+                      <i *ngIf="mapaForm.controls['email'].valid" class="material-icons">done</i>
+                      <i *ngIf="mapaForm.controls['email'].invalid" class="material-icons">clear</i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-success pull-right" (click)="test2()">Pronto</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header" data-background-color="blue">
+            <h4 class="title">Formulário</h4>
+            <p class="category">Insira as informações</p>
+          </div>
+          <div class="card-content">
+            <div class="card">
+              <div class="card-header" data-background-color="green">
+                <h4 class="title">Formulário</h4>
+                <p class="category">Insira as informações</p>
+              </div>
+              <div class="card-content">
+                asdsd
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

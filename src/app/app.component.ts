@@ -103,6 +103,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return bool;
   }
 
+  // Remove loading spinner
   removeSpinner() {
     document.getElementById("pre-bootstrap").style.display = "none";
   }

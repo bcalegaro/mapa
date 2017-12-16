@@ -14,6 +14,14 @@ import { UpgradeComponent } from "./upgrade/upgrade.component";
 
 const routes: Routes = [
   {
+    path: "mapa",
+    data: {
+      labels: ["Mapa Numerológico"],
+      urls: ["mapa"]
+    },
+    loadChildren: "./mapa/mapa.module#MapaModule"
+  },
+  {
     path: "db-master",
     data: {
       labels: ["Arquivos"],
