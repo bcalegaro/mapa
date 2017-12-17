@@ -257,11 +257,20 @@ export class ChartService {
     for (const valor of valorNumeros) {
       total = total + +valor;
     };
-    for (const valor of valorNumeros) {
-      const x = Math.round(valor * 100 / total);
-      newData.push(x);
-      newLabel.push(x + "%");
-    };
+    // Consistency to work when reset chart
+    if (total === 0) {
+      for (const valor of valorNumeros) {
+        newData.push(valor);
+        newLabel.push(valor + "%");
+      };
+    } else {
+      // Normal flow, calc % of each number ocorrences
+      for (const valor of valorNumeros) {
+        const x = Math.round(valor * 100 / total);
+        newData.push(x);
+        newLabel.push(x + "%");
+      };
+    }
     // Assinala os valores do gráfico
     this.myChart.data.datasets[0].data = newData;
     this.myChart.data.labels = newLabel;

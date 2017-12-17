@@ -9,6 +9,11 @@ export class CoreService {
     this.data = new MapaData('', '', '');
   }
 
+  // Erase previous data
+  resetData() {
+    this.data = new MapaData('', '', '');
+  }
+
   getData(): MapaData {
     return this.data;
   }

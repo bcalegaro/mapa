@@ -70,8 +70,8 @@
                     </div>
                     <!-- EMAIL INPUT -->
                   </div>
-
-                  <button type="submit" class="btn pull-right" [ngClass]="{'btn-success': mapaForm.valid}" (click)="validateDate()">Pronto</button>
+                  <button type="reset" class="btn btn-danger" (click)="reset()" >Limpar</button>
+                  <button type="submit" class="btn pull-right" [ngClass]="{'btn-success': mapaForm.valid, 'disabled': mapaForm.invalid}" (click)="validateDate()">Pronto</button>
                   <div class="clearfix"></div>
                 </form>
               </div>

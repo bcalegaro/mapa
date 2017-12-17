@@ -54,10 +54,12 @@ export class FormComponent implements OnInit, OnDestroy {
 
     // Subscribe to from fullName - live reload chart and pre-resume
     this.fullNameSubscription = this.mapaForm.controls['fullName'].valueChanges.subscribe((newValue) => {
-      this.coreService.setFullName(newValue);
-      this.mapaData = this.coreService.getData();
-      this.chartService.updateChartFromData(this.coreService.getDataForChart());
-      this.showPreResume = true;
+      if (this.mapaForm.controls['fullName'].valid) {
+        this.coreService.setFullName(newValue);
+        this.mapaData = this.coreService.getData();
+        this.chartService.updateChartFromData(this.coreService.getDataForChart());
+        this.showPreResume = true;
+      }
     });
   }
 
@@ -68,6 +70,14 @@ export class FormComponent implements OnInit, OnDestroy {
 
   goToResume() {
     this.formService.goToResume();
+  }
+
+  // Angular reset the form but this reset variables
+  reset() {
+    this.showPreResume = false;
+    this.coreService.resetData();
+    this.mapaData = new MapaData('', '', '');
+    this.chartService.updateChartFromData(this.coreService.getDataForChart());
   }
 
   validateDate() {
