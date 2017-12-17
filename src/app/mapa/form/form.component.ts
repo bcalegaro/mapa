@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NumberService } from '@shared/number.service';
@@ -14,7 +14,7 @@ import { FormService } from './../_services/form.service';
   templateUrl: "./form.component.html",
   styleUrls: ["./form.component.scss"]
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   // Mapa form group
   mapaForm: FormGroup;
   // Flag to show pre-resume
@@ -22,6 +22,9 @@ export class FormComponent implements OnInit {
 
   // Pre-Resume data
   mapaData: MapaData;
+
+  // Subscriber to live reload
+  fullNameSubscription: any;
 
   constructor(
     private router: Router,
@@ -39,22 +42,28 @@ export class FormComponent implements OnInit {
         this.formService.dateValidator
       ])]
     });
-    // Set initial flag
-    this.showPreResume = false;
-    this.mapaData = new MapaData('', '', '');
   }
 
   ngOnInit() {
-    this.coreService.setFullName('Bruno Crestani Calegaro');
-
-    this.mapaData = this.coreService.getData();
+    // Set initial flags
     this.showPreResume = false;
-
-    this.chartService.init();
-
+    this.mapaData = new MapaData('', '', '');
+    // Create chart blank
     const canvas = document.getElementById("myChart");
     this.chartService.createChart(canvas);
 
+    // Subscribe to from fullName - live reload chart and pre-resume
+    this.fullNameSubscription = this.mapaForm.controls['fullName'].valueChanges.subscribe((newValue) => {
+      this.coreService.setFullName(newValue);
+      this.mapaData = this.coreService.getData();
+      this.chartService.updateChartFromData(this.coreService.getDataForChart());
+      this.showPreResume = true;
+    });
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe target id
+    this.fullNameSubscription.unsubscribe();
   }
 
   goToResume() {
@@ -62,18 +71,5 @@ export class FormComponent implements OnInit {
   }
 
   validateDate() {
-//    this.coreService.setFullName(this.mapaForm.controls['fullName'].value);
-    this.coreService.setFullName('Bruno Crestani Calegaro');
-
-    this.mapaData = this.coreService.getData();
-    this.showPreResume = true;
-
-
-
-    // Send modified data and update the chart
-    const indicesNumeros: Array<string> = ['1', '1', '1', '1', '1', '1', '1', '1', '1'];
-    const valorNumeros: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const totalNumeros = 30;
-    this.chartService.updateChart(indicesNumeros, valorNumeros, totalNumeros);
   }
 }

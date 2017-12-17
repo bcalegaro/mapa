@@ -1,3 +1,4 @@
+import { MapaData } from 'app/mapa/_services/core.service';
 import { Injectable } from '@angular/core';
 import * as Chartist from "chartist";
 
@@ -7,7 +8,7 @@ import Chart from "chart.js";
 @Injectable()
 export class ChartService {
   // For reconfigure proportional max bar
-  private tickValue = 5;
+  private tickValue = 25;
   // Chart index and values
   public indicesNumeros: Array<string>;
   public valorNumeros: Array<number>;
@@ -167,11 +168,12 @@ export class ChartService {
       },
       // Animação para colocar texto em cima das barras
       animation: {
-        duration: 1,
+        duration: 750,
+        easing: "easeOutSine",
         onComplete: function () {
           const chartInstance = this.chart,
             ctx = chartInstance.ctx;
-          ctx.font = Chart.helpers.fontString(32, "bold", Chart.defaults.global.defaultFontFamily);
+          ctx.font = Chart.helpers.fontString(28, "bold", Chart.defaults.global.defaultFontFamily);
           ctx.textAlign = 'center';
           ctx.textBaseline = 'bottom';
           this.data.datasets.forEach(function (dataset, i) {
@@ -247,5 +249,28 @@ export class ChartService {
     this.myChart.update();
   }
 
+  updateChartFromData(valorNumeros: Array<number>) {
+    // Prepara os novos valores a ser adicionados
+    const newData = new Array<any>();
+    const newLabel = new Array<any>();
+    let total = 0;
+    for (const valor of valorNumeros) {
+      total = total + +valor;
+    };
+    for (const valor of valorNumeros) {
+      const x = Math.round(valor * 100 / total);
+      newData.push(x);
+      newLabel.push(x + "%");
+    };
+    // Assinala os valores do gráfico
+    this.myChart.data.datasets[0].data = newData;
+    this.myChart.data.labels = newLabel;
+    this.totalNumeros = total;
+    // Configura o tamanho do gráfico
+    const yAxesMAX = Math.max.apply(Math, newData) + this.tickValue;
+    this.myChart.options.scales.yAxes[0].ticks.max = yAxesMAX;
+    // Reinicia o gráfico
+    this.myChart.update();
+  }
 
 }

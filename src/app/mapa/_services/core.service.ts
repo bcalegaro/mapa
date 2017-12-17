@@ -37,11 +37,14 @@ export class CoreService {
   private processFullName() {
     const name = this.data.fullname.toLowerCase().split('');
     let alma = 0, aparencia = 0, destino;
+    this.data.resetNumberQuantity();
     // Process logic run each letter, get its raw value and sum number correctly
     let value: number;
     for (const i of name) {
       if (i !== " ") { // To ignore white space
         value = this.getAlphabeticNumber(i);
+        // Increase value occurences
+        this.data.numberQuantity[value - 1]++;
         // Vogals firsts, else cons
         if ((i === 'a') || (i === 'e') || (i === 'i') || (i === 'o') || (i === 'u')) {
           alma += value;
@@ -59,6 +62,10 @@ export class CoreService {
     return (char.charCodeAt(0) - 97) % 9 + 1;
   }
 
+  // get data for chart from data
+  getDataForChart(): Array<number> {
+    return this.data.numberQuantity;
+  }
 
 }
 
@@ -75,17 +82,26 @@ export class MapaData {
   destino: number;
   licaodevida: number;
 
+  // Chart Data
+  numberQuantity: Array<number>;
+
   constructor(fullname: string,
     birthday: string,
     email: string) {
     this.fullname = fullname;
     this.birthday = birthday;
     this.email = email;
+
+    this.resetNumberQuantity();
   }
 
   setNameData(alma: number, aparencia: number, destino: number) {
     this.alma = alma;
     this.aparencia = aparencia;
     this.destino = destino;
+  }
+
+  resetNumberQuantity() {
+    this.numberQuantity = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 }
