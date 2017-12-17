@@ -29,7 +29,7 @@ export class FormService {
 
   dateValidator(control: FormControl): ValidationErrors {
     if (control.value === "") {
-      return null ;
+      return { "invalidDate": true };
     }
     const value = control.value;
     if ((value.length < 8) || (value.length > 8)) {
@@ -40,7 +40,7 @@ export class FormService {
     const year = value.substring(4, value.length)
     const date = moment(year + '-' + month + '-' + day);
     if (date.isValid()) {
-      return null;
+      return  null;
     } else {
       return { "invalidDate": true };
 

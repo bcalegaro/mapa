@@ -37,12 +37,12 @@
                   <!-- FULL NAME INPUT -->
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['fullName'].valid, 'has-error': mapaForm.controls['fullName'].touched&&mapaForm.controls['fullName'].invalid}">
+                      <div class="form-group label-floating" [ngClass]="{'has-success': mapaForm.controls['fullName'].touched&&mapaForm.controls['fullName'].valid}">
                         <label for="fullName" class="control-label">Nome Completo</label>
-                        <input type="text" id="fullName" [formControl]="mapaForm.controls['fullName']" class="form-control" pattern="[a-zA-Z ]*">
+                        <input type="text" id="fullName" [formControl]="mapaForm.controls['fullName']" class="form-control" pattern="[a-zA-Z ]*"> {{mapaForm.controls['fullName'].valid}}
                         <span class="form-control-feedback">
                           <i *ngIf="mapaForm.controls['fullName'].valid" class="material-icons">done</i>
-                          <i *ngIf="mapaForm.controls['fullName'].invalid" class="material-icons">clear</i>
+                          <i *ngIf="!mapaForm.controls['fullName'].valid" class="material-icons">clear</i>
                         </span>
                       </div>
                     </div>
@@ -51,26 +51,24 @@
                   <div class="row">
                     <!-- BIRTHDAY INPUT - MASK CONFIGURED TO DD/MM/YYYY -->
                     <div class="col-md-6">
-                      <div class="form-group label-floating is-empty">
+                      <div class="form-group label-floating" [ngClass]="{'has-success': mapaForm.controls['birthday'].valid, 'has-warning': mapaForm.controls['birthday'].touched&&mapaForm.controls['birthday'].invalid}">
                         <label for="birthday" class="control-label">Data de Nascimento</label>
-                        <input id="birthday" [formControl]="mapaForm.controls['birthday']" 
-                        class="form-control"
-                        mask="00/00/0000">
-                        <span class="form-control-feedback">asdsd
-                          <i *ngIf="!mapaForm.controls['birthday'].valid||true" class="material-icons">done</i>
-                          <i *ngIf="mapaForm.controls['birthday'].invalid||true" class="material-icons">clear</i>
+                        <input type="text" id="birthday" [formControl]="mapaForm.controls['birthday']" class="form-control" mask="00/00/0000"> {{mapaForm.controls['birthday'].valid}}{{mapaForm.controls['birthday'].dirty}}{{mapaForm.controls['birthday'].touched}}
+                        <span class="form-control-feedback">
+                          <i *ngIf="mapaForm.controls['birthday'].valid" class="material-icons">done</i>
+                          <i *ngIf="!mapaForm.controls['birthday'].valid" class="material-icons">clear</i>
                         </span>
                       </div>
                     </div>
                     <!-- BIRTHDAY INPUT -->
                     <!-- EMAIL INPUT -->
                     <div class="col-md-6">
-                      <div class="form-group label-floating is-empty" [ngClass]="{'has-success': mapaForm.controls['email'].valid, 'has-error': (mapaForm.controls['email'].touched||mapaForm.controls['email'].dirty)&&mapaForm.controls['email'].invalid}">
+                      <div class="form-group label-floating" [ngClass]="{'has-success': mapaForm.controls['email'].touched&&mapaForm.controls['email'].valid}">
                         <label for="email" class="control-label">Email (Opcional)</label>
-                        <input id="email" [formControl]="mapaForm.controls['email']" class="form-control">
+                        <input id="email" [formControl]="mapaForm.controls['email']" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{1,}[.]{1}[a-zA-Z]{2,}"> {{mapaForm.controls['email'].valid}}
                         <span class="form-control-feedback">
                           <i *ngIf="mapaForm.controls['email'].valid" class="material-icons">done</i>
-                          <i *ngIf="mapaForm.controls['email'].invalid" class="material-icons">clear</i>
+                          <i *ngIf="!mapaForm.controls['email'].valid" class="material-icons">clear</i>
                         </span>
                       </div>
                     </div>

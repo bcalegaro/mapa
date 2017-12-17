@@ -1,0 +1,29 @@
+
+
+/* Since there is an bug if form has-error not showing correct
+i will overwrite the has-warning if colors red do workaround this issue
+maybe future works to fixs it by for now...*/
+@import "../../../assets/sass/md/_colors.scss";
+@import "../../../assets/sass/md/_variables.scss";
+
+@mixin form-group-validation-state($name, $color) {
+    &.#{$name} {
+        // e.g. has-error
+        .form-control {
+            box-shadow: none;
+        }
+        &.is-focused .form-control {
+            background-image: linear-gradient($color, $color), linear-gradient($mdb-input-underline-color, $mdb-input-underline-color);
+        }
+        label.control-label,
+        .help-block {
+            color: $color;
+        }
+    }
+}
+
+.has-warning {
+    @include form-group-validation-state(has-warning, $brand-danger);
+
+    color: $red;
+}

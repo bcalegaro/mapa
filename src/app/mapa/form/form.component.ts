@@ -26,6 +26,7 @@ export class FormComponent implements OnInit {
       'fullName': ['', Validators.required],
       'email': ['', Validators.email],
       'birthday': ['', Validators.compose([
+        Validators.required, Validators.minLength(8),
         this.formService.dateValidator
       ])]
     });
