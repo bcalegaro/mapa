@@ -12,14 +12,6 @@ export class DbHomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  addTodo() {
-    this.dbservice.addTodo("t");
-  }
-
-  showTodos() {
-    this.dbservice.showTodos();
-  }
-
   addDocument(name: string) {
     this.dbservice.initDocument(name);
   }

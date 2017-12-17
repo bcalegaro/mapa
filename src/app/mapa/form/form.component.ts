@@ -25,6 +25,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   // Subscriber to live reload
   fullNameSubscription: any;
+  birthdaySubscription: any;
 
   constructor(
     private router: Router,
@@ -35,19 +36,20 @@ export class FormComponent implements OnInit, OnDestroy {
     private chartService: ChartService
   ) {
     this.mapaForm = this.formBuilder.group({
-      'fullName': ['', Validators.required],
-      'email': ['', Validators.email],
-      'birthday': ['', Validators.compose([
+      'fullName': ['Bruno Crestani Calegaro', Validators.required],
+      'email': ['a@a.com', Validators.email],
+      'birthday': ['21091988', Validators.compose([
         Validators.required, Validators.minLength(8),
         this.formService.dateValidator
-      ])]
+      ])],
+      'sex': ['M', Validators.required]
     });
   }
 
   ngOnInit() {
     // Set initial flags
     this.showPreResume = false;
-    this.mapaData = new MapaData('', '', '');
+    this.mapaData = new MapaData('', '', '', '');
     // Create chart blank
     const canvas = document.getElementById("myChart");
     this.chartService.createChart(canvas);
@@ -61,11 +63,18 @@ export class FormComponent implements OnInit, OnDestroy {
         this.showPreResume = true;
       }
     });
+
+    this.birthdaySubscription = this.mapaForm.controls['birthday'].valueChanges.subscribe((newValue) => {
+      if (this.mapaForm.controls['birthday'].valid) {
+        this.coreService.setBirthday(newValue);
+      }
+    });
   }
 
   ngOnDestroy() {
     // Unsubscribe target id
     this.fullNameSubscription.unsubscribe();
+    this.birthdaySubscription.unsubscribe();
   }
 
   goToResume() {
@@ -76,10 +85,18 @@ export class FormComponent implements OnInit, OnDestroy {
   reset() {
     this.showPreResume = false;
     this.coreService.resetData();
-    this.mapaData = new MapaData('', '', '');
+    this.mapaData = new MapaData('', '', '', '');
     this.chartService.updateChartFromData(this.coreService.getDataForChart());
   }
 
-  validateDate() {
+  onSubmit() {
+    this.coreService.setFullName(this.mapaForm.controls['fullName'].value);
+    this.coreService.setBirthday(this.mapaForm.controls['birthday'].value);
+    // Live reload already updated full name and birthday so only set sex and email
+    this.coreService.setSex(this.mapaForm.controls['sex'].value);
+    this.coreService.setEmail(this.mapaForm.controls['email'].value);
+    // No need to pass parameters because core service persistence the form data
+    this.formService.goToResume();
   }
+
 }

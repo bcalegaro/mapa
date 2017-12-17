@@ -6,12 +6,12 @@ export class CoreService {
 
   constructor() {
     // Create a blank information
-    this.data = new MapaData('', '', '');
+    this.data = new MapaData('', '', '', '');
   }
 
   // Erase previous data
   resetData() {
-    this.data = new MapaData('', '', '');
+    this.data = new MapaData('', '', '', '');
   }
 
   getData(): MapaData {
@@ -36,6 +36,9 @@ export class CoreService {
   }
   setEmail(email: string) {
     this.data.email = email;
+  }
+  setSex(sex: string) {
+    this.data.sex = sex;
   }
 
   // Function to process mapa from full name
@@ -80,6 +83,7 @@ export class MapaData {
   fullname: string;
   birthday: string;
   email: string;
+  sex: string;
 
   // Mapa number
   alma: number;
@@ -92,11 +96,12 @@ export class MapaData {
 
   constructor(fullname: string,
     birthday: string,
-    email: string) {
+    email: string,
+    sex: string) {
     this.fullname = fullname;
     this.birthday = birthday;
     this.email = email;
-
+    this.sex = sex;
     this.resetNumberQuantity();
   }
 

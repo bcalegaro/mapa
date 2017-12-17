@@ -1,16 +1,105 @@
 <div class="main-content animated fadeIn">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <div class="title">
-          <h1>
-            Resumo dos Dados
-          </h1>
-          <p>
-            Esse módulo apresenta o resumo da numerologia calculada. Você também pode editar os dados por aqui. Após finalizar as edições,
-            clique para gerar o relatório final em .pdf.
-          </p>
-          <button class="btn btn-primary">click</button>
+      <div class="col-md-12">
+        <h3 class="title"> Resumo dos Dados</h3>
+        <p class="category">Esse módulo apresenta o resumo da numerologia calculada. Você também pode editar os dados por aqui. Após finalizar
+          as edições, clique para gerar o relatório final em .pdf.</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-stats">
+              <div class="card-header" data-background-color="blue-400">
+                <h5 class="title">Nome Completo</h5>
+              </div>
+              <div class="card-content">
+                <p>{{data.fullname}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-stats">
+              <div class="card-header" data-background-color="blue-400">
+                <h5 class="title">E-mail</h5>
+              </div>
+              <div class="card-content">
+                <p>{{data.email}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-stats">
+              <div class="card-header" data-background-color="blue-400">
+                <h5 class="title">Gênero</h5>
+              </div>
+              <div class="card-content">
+                <p>{{data.sex}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="loading > 0" class="col-md-12">
+        <p class="text-center">Carregando Dados...</p>
+        <div class='loader loader1'>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NUMBER DOCS -->
+      <div *ngIf="loading === 0">
+        <div class="col-md-12">
+          <app-card-awesome [title]="'Número da Alma ' + data.alma" [description]="almaDocs.docs[almaIndex].description" [color]="almaDocs.docs[almaIndex].number.color"
+            [btnText]="'Editar'" [btnAction]="almaIndex" (change)="action('Alma', almaIndex)"></app-card-awesome>
+        </div>
+        <div class="col-md-12">
+          <app-card-awesome [title]="'Número da Aparência ' + data.aparencia" [description]="aparenciaDocs.docs[aparenciaIndex].description"
+            [color]="aparenciaDocs.docs[aparenciaIndex].number.color" [btnText]="'Editar'" [btnAction]="aparenciaIndex" (change)="action('Aparência', aparenciaIndex)"></app-card-awesome>
+        </div>
+        <div class="col-md-12">
+            <app-card-awesome [title]="'Número do Destino ' + data.destino" [description]="destinoDocs.docs[destinoIndex].description"
+              [color]="destinoDocs.docs[destinoIndex].number.color" [btnText]="'Editar'" [btnAction]="destinoIndex" (change)="action('Destino', destinoIndex)"></app-card-awesome>
+          </div>
+        </div>
+      <!-- NUMBER DOCS -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" [attr.data-background-color]="numberInfo.number.color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="title">Número {{numberInfo.number.original}}</h4>
+                <p class="category">Painel de edição de documento</p>
+              </div>
+              <div class="card-content">
+                <div [froalaEditor] [(froalaModel)]="numberInfo.description"></div>
+              </div>
+              <div class="pull-right">
+                <button class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button class="btn" [attr.data-background-color]="numberInfo.number.color" data-dismiss="modal" (click)="saveDoc()">Salvar</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

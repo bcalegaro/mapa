@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import PouchDB from 'pouchdb-browser';
 
-import PouchDB from "pouchdb-browser";
-
-// Number mapa custom type [original, textual, value]
 import { NumberMapa } from './number.service';
 
+
+// Number mapa custom type [original, textual, value]
 @Injectable()
 export class DBService {
   db: any;
@@ -38,30 +38,6 @@ export class DBService {
       .on("error", function(err) {
         console.log("Database got an error:" + err);
       });
-  }
-
-  addTodo(text) {
-    const todo = {
-      _id: new Date().toISOString(),
-      title: text,
-      completed: false
-    };
-    this.db.put(todo, function callback(err, result) {
-      if (!err) {
-        console.log("Successfully posted a todo!");
-      }
-    });
-  }
-
-  showTodos() {
-    this.db.allDocs({ include_docs: true, descending: true }, function(
-      err,
-      doc
-    ) {
-      doc.rows.forEach(element => {
-        console.log(element.doc.title);
-      });
-    });
   }
 
   updateDoc(id: string, info: Array<DocInfo>) {
@@ -101,6 +77,18 @@ export class DBService {
     return this.db.get(id).then((doc: DocHeader) => {
       return doc;
     });
+  }
+
+  getDocInfoPosition(doc: DocHeader, number: number): number {
+    let i;
+    // Search for given number in docs
+    for (i = 0; i < doc.docs.length; i++) {
+      if (doc.docs[i].number.original === number) {
+        return i;
+      }
+    }
+    // Return null for not found - will be created blanklly
+    return -1;
   }
 
   // Function to init a blank document
