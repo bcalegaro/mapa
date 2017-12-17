@@ -1,29 +1,25 @@
 <div class="main-content animated fadeIn">
   <div class="container-fluid">
+    <!-- PAGE HEADER -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <h1>
+            Formulário de Dados
+          </h1>
+          <p>
+            Use este módulo para inserir os dados para calcular a numerologia. Os dados digitados já serão mostrados no painel a direita.
+          </p>
+        </div>
+      </div>
+      <!-- INFO BUTTON-->
+      <a class="btn btn-info" href="#" role="button">Aprenda mais</a>
+      <!-- INFO BUTTON-->
+    </div>
+    <!-- PAGE HEADER-->
     <div class="row">
       <!-- PAGE LEFT LAYOUT -->
-      <div class="col-md-8">
-        <!-- PAGE HEADER WITH FREE RIGHT SPACE-->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="title">
-              <h1>
-                Formulário de Dados
-              </h1>
-              <p>
-                Use este módulo para inserir os dados para calcular a numerologia.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- PAGE HEADER WITH FREE RIGHT SPACE-->
-        <!-- INFO BUTTON-->
-        <div class="row">
-          <div class="col-md-3">
-            <a class="btn btn-info btn-block" href="#" role="button">Aprenda mais</a>
-          </div>
-        </div>
-        <!-- INFO BUTTON-->
+      <div class="col-md-6">
         <!-- FORM -->
         <div class="row">
           <div class="col-md-12">
@@ -87,26 +83,66 @@
       </div>
       <!-- PAGE LEFT LAYOUT -->
       <!-- PAGE RIGHT LAYOUT -->
-      <div *ngIf="showPreResume" class="col-md-4">
+      <div class="col-md-6">
+        <!-- CHART -->
         <div class="card">
-          <div class="card-header" data-background-color="blue">
-            <h4 class="title">Formulário</h4>
-            <p class="category">Insira as informações</p>
+          <div class="card-header" data-background-color="orange">
+            <h4 class="title">Gráfico de Proporções</h4>
+            <p class="category">Dados atualizados em tempo real.</p>
           </div>
           <div class="card-content">
-            <div class="card">
-              <div class="card-header" data-background-color="green">
-                <h4 class="title">Formulário</h4>
-                <p class="category">Insira as informações</p>
-              </div>
-              <div class="card-content">
-                asdsd
-              </div>
-            </div>
+          </div>
+          <div class="card-footer">
+            <canvas id="myChart" class='img-responsive'></canvas>
+          </div>
+        </div>
+        <!-- CHART -->
+      </div>
+    </div>
+    <div class="row">
+      <!-- PRE-RESUME -->
+      <div class="col-md-3" *ngIf="showPreResume">
+        <div class="card card-testimonial animated slideInRight">
+          <div class="card-header" data-background-color="orange">
+            {{this.mapaData.alma}}
+          </div>
+          <div class="card-content">
+            <p>Alma</p>
           </div>
         </div>
       </div>
-      <!-- PAGE RIGHT LAYOUT -->
+      <div class="col-md-3" *ngIf="showPreResume">
+        <div class="card card-testimonial animated slideInRight ">
+          <div class="card-header" data-background-color="blue">
+            {{this.mapaData.aparencia}}
+          </div>
+          <div class="card-content">
+            <p>Aparência</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="showPreResume">
+        <div class="card card-testimonial animated slideInRight">
+          <div class="card-header" data-background-color="green">
+            {{this.mapaData.destino}}
+          </div>
+          <div class="card-content">
+            <p>Destino</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="this.mapaData.licaodevida">
+        <div class="card card-testimonial animated slideInRight">
+          <div class="card-header" data-background-color="green">
+            {{this.mapaData.licaodevida}}
+          </div>
+          <div class="card-content">
+            <p>Lição de Vida</p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- PRE-RESUME -->
   </div>
+  <!-- PAGE RIGHT LAYOUT -->
 </div>

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 
+import { ChartService } from './_services/chart.service';
+import { CoreService } from './_services/core.service';
 import { FormService } from './_services/form.service';
 import { FormComponent } from './form/form.component';
 import { MapaRoutingModule } from './mapa-routing.module';
@@ -17,6 +19,6 @@ import { ResumeComponent } from './resume/resume.component';
     MapaRoutingModule
   ],
   declarations: [FormComponent, ResumeComponent],
-  providers: [FormService]
+  providers: [FormService, CoreService, ChartService]
 })
 export class MapaModule { }
