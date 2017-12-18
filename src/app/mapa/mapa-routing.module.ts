@@ -2,7 +2,6 @@ import { ResumeComponent } from './resume/resume.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormComponent } from 'app/mapa/form/form.component';
-import { ReportComponent } from 'app/mapa/report/report.component';
 
 const routes: Routes = [
   {
@@ -24,14 +23,6 @@ const routes: Routes = [
     data: {
       labels: ["Mapa Numerológico", "Formulário", "Resumo"],
       urls: ["dashboard", "mapa/form", "mapa/resume"]
-    }
-  },
-  {
-    path: "report",
-    component: ReportComponent,
-    data: {
-      labels: ["Mapa Numerológico", "Formulário", "Resumo", "Relatório"],
-      urls: ["dashboard", "mapa/form", "mapa/resume", "mapa/report"]
     }
   }
 ];

@@ -12,7 +12,6 @@ import { FormService } from './_services/form.service';
 import { ReportService } from './_services/report.service';
 import { FormComponent } from './form/form.component';
 import { MapaRoutingModule } from './mapa-routing.module';
-import { ReportComponent } from './report/report.component';
 import { ResumeComponent } from './resume/resume.component';
 
 @NgModule({
@@ -27,7 +26,7 @@ import { ResumeComponent } from './resume/resume.component';
     FroalaViewModule,
     MapaRoutingModule
   ],
-  declarations: [FormComponent, ResumeComponent, ReportComponent],
+  declarations: [FormComponent, ResumeComponent],
   providers: [FormService, CoreService, ChartService, ReportService]
 })
 export class MapaModule { }

@@ -1,3 +1,4 @@
+import { ReportService } from './../_services/report.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocHeader } from '@shared/db.service';
@@ -35,7 +36,8 @@ export class ResumeComponent implements OnInit {
     private router: Router,
     private coreService: CoreService,
     private dbService: DBService,
-    private numberService: NumberService) {
+    private numberService: NumberService,
+    private reportService: ReportService) {
     // Blank info to avoid modal error
     this.numberInfo = {
       number: {
@@ -227,9 +229,9 @@ export class ResumeComponent implements OnInit {
     this.loading--;
   }
 
-  goToReport() {
+  createReport() {
     this.coreService.setReportInfo(this.almaDocs.docs[this.almaIndex], this.aparenciaDocs.docs[this.aparenciaIndex], this.destinoDocs.docs[this.destinoIndex]);
-    this.router.navigate(["/mapa/report"]);
+    this.data = this.coreService.getData();
+    this.reportService.createAndSaveReport(this.data);
   }
-
 }
