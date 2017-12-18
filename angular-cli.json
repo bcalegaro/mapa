@@ -44,6 +44,7 @@
         "../node_modules/jszip/dist/jszip.min.js",
         "../node_modules/file-saver/FileSaver.min.js",
         "../node_modules/jszip-utils/dist/jszip-utils.min.js",
+        "./assets/js/encoder.js",
         "./electron/native.js"
       ],
       "environmentSource": "environments/environment.ts",

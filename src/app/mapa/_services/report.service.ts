@@ -5,7 +5,9 @@ import { saveAs } from 'file-saver';
 import * as JSZip from 'jszip';
 import * as JSZipUtils from 'jszip-utils';
 import * as moment from 'moment';
+import { unescape } from 'querystring';
 
+declare var Encoder: any;
 
 @Injectable()
 export class ReportService {
@@ -22,19 +24,19 @@ export class ReportService {
       nomeQuebrado: splitedInfo[0],
       numerosQuebrado: splitedInfo[1],
       numeroAlma: data.alma,
-      numeroAlmaDescricao: data.reportData.alma.description,
+      numeroAlmaDescricao: this.converText(data.reportData.alma.description),
       numeroAparencia: data.aparencia,
-      numeroAparenciaDescricao: data.reportData.aparencia.description,
+      numeroAparenciaDescricao: this.converText(data.reportData.aparencia.description),
       numeroDestino: data.destino,
-      numeroDestinoDescricao: data.reportData.destino.description
+      numeroDestinoDescricao: this.converText(data.reportData.destino.description)
     }
     return reportData;
   }
 
   createAndSaveReport(mapaData: MapaData) {
+    // Prepare data to parse in template report
     const data = this.createReportData(mapaData);
-
-
+    // Process template report with data and error tratement
     this.loadFile("assets/report/mapa-report-base.docx", function (error, content) {
       if (error) { throw error };
       const zip = new JSZip(content);
@@ -56,10 +58,11 @@ export class ReportService {
         throw error;
       }
 
+      // If successed, save document and ask user where to
       const out = doc.getZip().generate({
         type: "blob",
         mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      }) // Output the document using Data-URI
+      })
       saveAs(out, data.nomeCompleto + ".docx")
     })
   }
@@ -68,6 +71,7 @@ export class ReportService {
     JSZipUtils.getBinaryContent(url, callback);
   }
 
+  // This is the sample code from official docxtemplater website - will work for simple test
   createReportSample() {
     this.loadFile("assets/report/tag-example.docx", function (error, content) {
       if (error) { throw error };
@@ -102,4 +106,11 @@ export class ReportService {
       saveAs(out, "output.docx")
     })
   }
+
+  converText(text: string) {
+    // Convert html with plain text removing tags and special characters
+    return Encoder.htmlDecode(text).replace(/<[^>]*>/g, '');
+  }
+
 }
+
