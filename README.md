@@ -38,6 +38,11 @@ Run `yarn dist` to release a distribution installer for Windows. Be sure to have
 Tips for rapid development:
 + *ngFor="let item of list"
 
+* Search text in documents
++ grep -rnw '.' -e 'moment'
+
+
+
 ### Distribution Installer
 
 Run `yarn dist` to release a distribution installer for Windows. Be sure to have runned `yarn build` before.

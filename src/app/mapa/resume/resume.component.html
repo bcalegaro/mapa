@@ -67,11 +67,19 @@
             [color]="aparenciaDocs.docs[aparenciaIndex].number.color" [btnText]="'Editar'" [btnAction]="aparenciaIndex" (change)="action('Aparência', aparenciaIndex)"></app-card-awesome>
         </div>
         <div class="col-md-12">
-            <app-card-awesome [title]="'Número do Destino ' + data.destino" [description]="destinoDocs.docs[destinoIndex].description"
-              [color]="destinoDocs.docs[destinoIndex].number.color" [btnText]="'Editar'" [btnAction]="destinoIndex" (change)="action('Destino', destinoIndex)"></app-card-awesome>
-          </div>
+          <app-card-awesome [title]="'Número do Destino ' + data.destino" [description]="destinoDocs.docs[destinoIndex].description"
+            [color]="destinoDocs.docs[destinoIndex].number.color" [btnText]="'Editar'" [btnAction]="destinoIndex" (change)="action('Destino', destinoIndex)"></app-card-awesome>
         </div>
-      <!-- NUMBER DOCS -->
+        <!-- NUMBER DOCS -->
+
+        <!-- READY BUTTON -->
+        <div class="col-md-12">
+          <button class="btn btn-success pull-right" (click)="goToReport()">Finalizar - Gerar Relatório Final</button>
+         </div>
+        <!-- READY BUTTON -->
+
+
+      </div>
     </div>
   </div>
 </div>

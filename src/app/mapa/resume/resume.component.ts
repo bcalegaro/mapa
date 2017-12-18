@@ -1,7 +1,8 @@
-import { NumberService } from '@shared/number.service';
-import { DocHeader } from '@shared/db.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DocHeader } from '@shared/db.service';
 import { DBService, DocInfo } from '@shared/db.service';
+import { NumberService } from '@shared/number.service';
 import { CoreService, MapaData } from 'app/mapa/_services/core.service';
 
 declare var $: any;
@@ -31,6 +32,7 @@ export class ResumeComponent implements OnInit {
   loading = 3;
 
   constructor(
+    private router: Router,
     private coreService: CoreService,
     private dbService: DBService,
     private numberService: NumberService) {
@@ -223,6 +225,11 @@ export class ResumeComponent implements OnInit {
     this.dbService.getDocInfoPosition(doc, this.getDocOriginalValue(this.selectedDoc));
     // Deactivated spinner
     this.loading--;
+  }
+
+  goToReport() {
+    this.coreService.setReportInfo(this.almaDocs.docs[this.almaIndex], this.aparenciaDocs.docs[this.aparenciaIndex], this.destinoDocs.docs[this.destinoIndex]);
+    this.router.navigate(["/mapa/report"]);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DocInfo } from '@shared/db.service';
 
 @Injectable()
 export class CoreService {
@@ -41,6 +42,17 @@ export class CoreService {
     this.data.sex = sex;
   }
 
+  // Assign intel for report
+  setReportInfo(alma: DocInfo, aparencia: DocInfo, destino: DocInfo): void {
+    this.data.setReportInfo(alma, aparencia, destino);
+  }
+
+  // Assign intel for report
+  getReportInfo(): ReportData {
+    return this.data.reportData;
+  }
+
+
   // Function to process mapa from full name
   private processFullName() {
     const name = this.data.fullname.toLowerCase().split('');
@@ -70,9 +82,34 @@ export class CoreService {
     return (char.charCodeAt(0) - 97) % 9 + 1;
   }
 
+  getSplitedNameNumber(fullName: string) {
+    const name = fullName.toLocaleLowerCase();
+    let i, char;
+    let splitedName = "";
+    let splitedNumber = ""
+
+    for (i = 0; i < name.length; i++) {
+      char = name.charAt(i);
+      if (char !== " ") {
+        splitedName += " " + fullName.toUpperCase().charAt(i);
+        splitedNumber += " " + this.getAlphabeticNumber(char);
+      } else {
+        splitedName += "  ";
+        splitedNumber += "  ";
+      }
+
+    }
+    return [splitedName, splitedNumber]
+  }
+
   // get data for chart from data
   getDataForChart(): Array<number> {
     return this.data.numberQuantity;
+  }
+
+  // return DD/MM/YYYY
+  getBirthDayDate() {
+    return this.data.birthday.substring(0, 2) + '/' + this.data.birthday.substring(2, 4) + '/' + this.data.birthday.substring(4, 8);
   }
 
 }
@@ -94,6 +131,9 @@ export class MapaData {
   // Chart Data
   numberQuantity: Array<number>;
 
+  // Final report data
+  reportData: ReportData;
+
   constructor(fullname: string,
     birthday: string,
     email: string,
@@ -111,7 +151,27 @@ export class MapaData {
     this.destino = destino;
   }
 
+  // To reset chart
   resetNumberQuantity() {
     this.numberQuantity = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  }
+
+  // Assign intel for report
+  setReportInfo(alma: DocInfo, aparencia: DocInfo, destino: DocInfo) {
+    this.reportData = new ReportData(alma, aparencia, destino);
+  }
+}
+
+// Class with all informations for the final report
+export class ReportData {
+  alma: DocInfo;
+  aparencia: DocInfo;
+  destino: DocInfo;
+
+
+  constructor(alma: DocInfo, aparencia: DocInfo, destino: DocInfo) {
+    this.alma = alma;
+    this.aparencia = aparencia;
+    this.destino = destino;
   }
 }
