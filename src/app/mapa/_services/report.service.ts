@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { unescape } from 'querystring';
 
 declare var Encoder: any;
+declare var $: any;
 
 @Injectable()
 export class ReportService {
@@ -103,7 +104,8 @@ export class ReportService {
         type: "blob",
         mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       }) // Output the document using Data-URI
-      saveAs(out, "output.docx")
+      saveAs(out, "output.docx");
+      $("#reportButton").button('reset');
     })
   }
 
