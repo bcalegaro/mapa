@@ -43,7 +43,6 @@ export class BreadcrumbsComponent {
           };
           this.breadcrumbs.push(bread);
         }
-        console.log(this.breadcrumbs);
       });
   }
 
