@@ -32,7 +32,7 @@
         overflow: auto;
         width: 260px;
         z-index: 4;
-        //background-color: $white-color;
+        background-color: $white-color;
     }
     .logo-img{
         width: 30px;
@@ -136,6 +136,7 @@
         position: relative;
         padding: $padding-base $padding-base;
         z-index: 4;
+        background-color: $white-color;
 
         &:after{
             content: '';

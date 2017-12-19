@@ -243,15 +243,12 @@ export class ResumeComponent implements OnInit {
     const $this = $("#reportButton");
     $this.button('loading');
 
-    setTimeout(() => {
-      // Prepare data for report
-      this.coreService.setReportInfo(this.almaDocs.docs[this.almaIndex], this.aparenciaDocs.docs[this.aparenciaIndex], this.destinoDocs.docs[this.destinoIndex]);
-      this.data = this.coreService.getData();
-      // Create and save report as docx
-      this.reportService.createAndSaveReport(this.data);
-   $this.button('reset');
-    }, 1050);
-   
+    // Prepare data for report
+    this.coreService.setReportInfo(this.almaDocs.docs[this.almaIndex], this.aparenciaDocs.docs[this.aparenciaIndex], this.destinoDocs.docs[this.destinoIndex]);
+    this.data = this.coreService.getData();
+    // Create and save report as docx
+    this.reportService.createAndSaveReport(this.data);
+    $this.button('reset');
   }
 
 }

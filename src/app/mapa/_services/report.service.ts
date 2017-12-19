@@ -105,7 +105,6 @@ export class ReportService {
         mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       }) // Output the document using Data-URI
       saveAs(out, "output.docx");
-      $("#reportButton").button('reset');
     })
   }
 
