@@ -17,8 +17,13 @@
       "dom"
     ],
     "paths": {
-      "@shared/*": ["app/_shared/*"],
-      "@components/*": ["app/_components/*"]
-    }
+      "@shared/*": [
+        "app/_shared/*"
+      ],
+      "@components/*": [
+        "app/_components/*"
+      ]
+    },
+    "module": "es2015"
   }
 }
